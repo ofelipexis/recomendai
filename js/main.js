@@ -1,5 +1,5 @@
-import './style.css';
-import { getAccessToken, verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './authentication.js';
+import '../css/style.css';
+import { getAccessToken, verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './modules/authentication.js';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
@@ -15,9 +15,9 @@ if (code || localStorage.getItem('code')) {
   const authorizeButton = document.createElement('button');
   authorizeButton.innerHTML = 'Code Deu certo';
   buttonContainer.appendChild(authorizeButton);
-  localStorage.setItem('code', code);
 
   if (!localStorage.getItem('access_token')) {
+    localStorage.setItem('code', code);
     getAccessToken(clientId, code);
   }
 }
