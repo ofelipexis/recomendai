@@ -1,24 +1,23 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import './style.css';
+import { getAccessToken, verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './authentication.js';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const clientId = import.meta.env.VITE_CLIENT_ID;
+const params = new URLSearchParams(window.location.search);
+const code = params.get('code');
 
-setupCounter(document.querySelector('#counter'))
+const buttonContainer = document.querySelector('#button-container');
+const startButton = document.querySelector('#vai');
+
+verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(startButton, params, clientId);
+
+if (code || localStorage.getItem('code')) {
+  buttonContainer.removeChild(startButton);
+  const authorizeButton = document.createElement('button');
+  authorizeButton.innerHTML = 'Code Deu certo';
+  buttonContainer.appendChild(authorizeButton);
+  localStorage.setItem('code', code);
+
+  if (!localStorage.getItem('access_token')) {
+    getAccessToken(clientId, code);
+  }
+}
