@@ -2,16 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>recomendaí</title>
+    <title>recomendaí • playlists baseadas no que você ouve</title>
   </head>
   <body>
-    <div id="app">
-      <div id="button-container">
-        <button id="vai" type="button">Iniciar</button>
+    <header>
+      <div class="header-container">
+        <a class="header-title" href="./">recomenda<span>í</span></a>
+        <div class="btn-mode">light mode</div>
       </div>
-    </div>
-    <script type="module" src="/main.js"></script>
+    </header>
+
+    <main>
+      <div class="main-container">
+        <div class="start-container">
+          <p>escolha suas músicas favoritas e nós criaremos uma playlist com recomendações pra você</p>
+          <button class="btn-start" type="button">iniciar</button>
+        </div>
+        <div class="selection-container">
+          <div class="time-selection">
+            <p>escolha o período</p>
+            <button class="selection-btn">últimos 30 dias</button>
+            <button class="selection-btn">últimos 6 meses</button>
+            <button class="selection-btn">desde o início</button>
+          </div>
+          <div class="quantity-selection">
+            <p>e a quantidade de músicas</p>
+            <button class="selection-btn">10</button>
+            <button class="selection-btn">15</button>
+            <button class="selection-btn">20</button>
+            <button class="selection-btn">25</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <ul class="footer-menu-left">
+          <li><a target="_blank" href="https://github.com/ofelipexis/recomendai">github</a></li>
+        </ul>
+        <ul class="footer-menu-right">
+          <li><p>feito por </p><a href="https://github.com/ofelipexis">ofelipexis</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

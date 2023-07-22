@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -94,4 +94,84 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+:root {
+  --color-0: #fbfaff;
+  --color-1: #f8f4f1;
+  --color-2: #181818;
+  --color-3: #8381b9;
+  --color-4: #f55709;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a:link {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  margin: 0px;
+  background-color: var(--color-2);
+}
+
+.header-container {
+  max-width: 1200px;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid .01px var(--color-1);
+}
+
+.header-title {
+  padding: 8px 16px;
+  border-radius: 12px;
+  /* border: solid 2px var(--color-2); */
+  font-family: "IBM Plex Mono";
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-1);
+  /* font-style: italic; */
+}
+
+.header-title span {
+  color: var(--color-3);
+  font-style: italic;
+}
+
+.header-title:hover {
+  /* background-color: var(--color-4); */
+  /* border: solid 2px var(--color-1); */
+  color: var(--color-4);
+  font-weight: 700;
+}
+
+.header-title:hover span {
+  color: var(--color-0);
+}
+
+.btn-mode {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: solid 2px var(--color-1);
+  font-family: "IBM Plex Mono";
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-1);
+  background-color: var(--color-2);
+  cursor: pointer;
+}
+
+.btn-mode:hover {
+  background-color: var(--color-3);
 }
