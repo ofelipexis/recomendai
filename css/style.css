@@ -101,6 +101,7 @@ button:focus-visible {
   --color-2: #181818;
   --color-3: #8381b9;
   --color-4: #f55709;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 a,
@@ -116,8 +117,9 @@ li {
 }
 
 body {
-  margin: 0px;
+  margin: 0;
   background-color: var(--color-2);
+  padding: 0;
 }
 
 .header-container {
@@ -136,12 +138,10 @@ body {
 .header-title {
   padding: 8px 16px;
   border-radius: 12px;
-  /* border: solid 2px var(--color-2); */
   font-family: "IBM Plex Mono";
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-1);
-  /* font-style: italic; */
 }
 
 .header-title span {
@@ -150,14 +150,12 @@ body {
 }
 
 .header-title:hover {
-  /* background-color: var(--color-4); */
-  /* border: solid 2px var(--color-1); */
   color: var(--color-4);
   font-weight: 700;
 }
 
 .header-title:hover span {
-  color: var(--color-0);
+  color: var(--color-1);
 }
 
 .btn-mode {
@@ -174,4 +172,73 @@ body {
 
 .btn-mode:hover {
   background-color: var(--color-3);
+}
+
+.main-container {
+  max-width: 900px;
+  padding: 100px 0;
+  margin: 0 auto;
+  gap: 40px;
+  color: var(--color-1);
+}
+
+.start-container {
+  display: grid;
+  justify-content: center;
+  gap: 40px;
+}
+
+.main-text {
+  max-width: 600px;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--color-1);
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+footer {
+  bottom: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-top: solid 1px var(--color-1);
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-menu-left a {
+  background-color: var(--color-3);
+  border: solid 2px var(--color-1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--color-1);
+  font-weight: 700;
+}
+
+.footer-menu-left a:hover {
+  background-color: var(--color-2);
+}
+
+.footer-menu-right a {
+  background-color: var(--color-4);
+  border: solid 2px var(--color-1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--color-1);
+  font-weight: 700;
+}
+
+.footer-menu-right a:hover {
+  background-color: var(--color-2);
+}
+
+.footer-menu-right {
+  color: var(--color-1);
 }
