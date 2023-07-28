@@ -5,6 +5,14 @@ const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
 const code = params.get('code');
 
+// const main = document.querySelector('.main-container');
+
+// if (main.offsetHeight <= window.innerHeight) {
+//   const footer = document.querySelector('footer');
+//   console.log(footer);
+//   footer.classList.add('bottom-0');
+// }
+
 const buttonContainer = document.querySelector('#button-container');
 const startButton = document.querySelector('#vai');
 

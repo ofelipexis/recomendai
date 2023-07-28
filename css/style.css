@@ -120,6 +120,7 @@ body {
   margin: 0;
   background-color: var(--color-2);
   padding: 0;
+  min-height: 100vh;
 }
 
 .header-container {
@@ -150,7 +151,7 @@ body {
 }
 
 .header-title:hover {
-  color: var(--color-4);
+  color: var(--color-3);
   font-weight: 700;
 }
 
@@ -162,7 +163,6 @@ body {
   padding: 8px 16px;
   border-radius: 8px;
   border: solid 2px var(--color-1);
-  font-family: "IBM Plex Mono";
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-1);
@@ -174,6 +174,10 @@ body {
   background-color: var(--color-3);
 }
 
+main .remove {
+  display: none;
+}
+
 .main-container {
   max-width: 900px;
   padding: 100px 0;
@@ -183,23 +187,90 @@ body {
 }
 
 .start-container {
-  display: grid;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   gap: 40px;
 }
 
-.main-text {
-  max-width: 600px;
-  font-family: "IBM Plex Mono", monospace;
-  color: var(--color-1);
-  font-weight: 400;
-  font-size: 1.5rem;
-  text-align: center;
+.start-container p {
   margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+.btn-start {
+  margin: 0 auto;
+  display: block;
+  background-color: var(--color-4);
+  border: solid 2px var(--color-1);
+  padding: 16px 32px;
+  border-radius: 8px;
+  color: var(--color-1);
+  font-weight: 700;
+  font-family: 'IBM Plex Mono';
+  font-size: 1.5rem;
+}
+
+.btn-start:hover {
+  background-color: var(--color-3);
+  cursor: pointer;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.selection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.selection-text {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+.btn-container {
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+}
+
+.selection-btn {
+  background-color: var(--color-4);
+  border: solid 2px var(--color-1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'IBM Plex Mono';
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-1);
+  min-width: 120px;
+}
+
+.selection-btn:hover {
+  background-color: var(--color-3);
+  cursor: pointer;
 }
 
 footer {
+  background-color: var(--color-2);
+  z-index: 1;
+}
+
+.bottom-0 {
+  position: fixed;
+  left: 0;
   bottom: 0;
+  width: 100%;
 }
 
 .footer-container {
