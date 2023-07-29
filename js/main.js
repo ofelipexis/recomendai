@@ -24,21 +24,52 @@ function verifyPageHeight(event) {
 }
 
 verifyPageHeight();
-window.addEventListener('resize', verifyPageHeight);
 
-const buttonContainer = document.querySelector('#button-container');
-const startButton = document.querySelector('#vai');
+const mainContainer = document.querySelector('.main-container');
+const startContainer = document.querySelector('.start-container');
 
-verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(startButton, params, clientId);
+verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(startContainer, params, clientId);
 
 if (code || localStorage.getItem('code')) {
-  buttonContainer.removeChild(startButton);
-  const authorizeButton = document.createElement('button');
-  authorizeButton.innerHTML = 'Code Deu certo';
-  buttonContainer.appendChild(authorizeButton);
+  mainContainer.removeChild(startContainer);
+  // const authorizeButton = document.createElement('button');
+  mainContainer.innerHTML = `
+  <div class="selection-container">
+    <div class="selection">
+      <div class="selection-text">
+        <p>escolha o período</p>
+      </div>
+      <div class="btn-container">
+        <button class="selection-btn">últimos 30 dias</button>
+        <button class="selection-btn">últimos 6 meses</button>
+        <button class="selection-btn">desde o início</button>
+      </div>
+    </div>
+    
+    <div class="selection">
+      <div class="selection-text">
+        <p>e a quantidade de músicas</p>
+      </div>
+      <div class="btn-container">
+        <button class="selection-btn">10</button>
+        <button class="selection-btn">15</button>
+        <button class="selection-btn">20</button>
+        <button class="selection-btn">25</button>
+      </div>
+      
+      <div class="get-tracks-container">
+        <button class="btn-start get-tracks">vamos lá!</button>
+      </div>
+      
+    </div>
+  </div>
+  `;
+  mainContainer.classList.add('decrease-padding');
 
   if (!localStorage.getItem('access_token')) {
     localStorage.setItem('code', code);
     getAccessToken(clientId, code);
   }
 }
+
+window.addEventListener('resize', verifyPageHeight);

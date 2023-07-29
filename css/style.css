@@ -186,6 +186,10 @@ main .hidden {
   color: var(--color-1);
 }
 
+.decrease-padding {
+  padding: 40px 0 !important;
+}
+
 .start-container {
   display: flex;
   flex-direction: column;
@@ -236,6 +240,11 @@ main .hidden {
   max-width: 600px;
   font-size: 1.125rem;
   line-height: 2rem;
+}
+
+.get-tracks-container {
+  margin: 0 auto;
+  padding: 80px;
 }
 
 .btn-container {
