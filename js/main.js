@@ -5,13 +5,26 @@ const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
 const code = params.get('code');
 
-// const main = document.querySelector('.main-container');
+function verifyPageHeight(event) {
+  if (event) {
+    event.preventDefault();
+  }
 
-// if (main.offsetHeight <= window.innerHeight) {
-//   const footer = document.querySelector('footer');
-//   console.log(footer);
-//   footer.classList.add('bottom-0');
-// }
+  const windowHeight = window.innerHeight;
+  const headerHeight = document.querySelector('.header-container').offsetHeight;
+  const mainHeight = document.querySelector('.main-container').offsetHeight;
+  const footerHeight = document.querySelector('.footer-container').offsetHeight;
+  const footer = document.querySelector('footer');
+
+  if (mainHeight <= windowHeight - (headerHeight + footerHeight)) {
+    footer.classList.add('bottom-0');
+  } else if (footer.classList.contains('bottom-0')) {
+    footer.classList.remove('bottom-0');
+  }
+}
+
+verifyPageHeight();
+window.addEventListener('resize', verifyPageHeight);
 
 const buttonContainer = document.querySelector('#button-container');
 const startButton = document.querySelector('#vai');
