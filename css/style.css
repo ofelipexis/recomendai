@@ -266,7 +266,8 @@ main .hidden {
 }
 
 .selection-btn:hover {
-  background-color: var(--color-3);
+  background-color: var(--color-1);
+  color: var(--color-2);
   cursor: pointer;
 }
 
@@ -321,4 +322,8 @@ footer {
 
 .footer-menu-right {
   color: var(--color-1);
+}
+
+.selected {
+  background-color: var(--color-3);
 }

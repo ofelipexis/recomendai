@@ -1,48 +1,29 @@
 import '../css/style.css';
 import { getAccessToken, verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './modules/authentication.js';
+import { updatePeriodButtons, updateQuantityButtons } from './modules/button-select.js';
+import verifyPageHeight from './modules/page-height.js';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
 const code = params.get('code');
-
-function verifyPageHeight(event) {
-  if (event) {
-    event.preventDefault();
-  }
-
-  const windowHeight = window.innerHeight;
-  const headerHeight = document.querySelector('.header-container').offsetHeight;
-  const mainHeight = document.querySelector('.main-container').offsetHeight;
-  const footerHeight = document.querySelector('.footer-container').offsetHeight;
-  const footer = document.querySelector('footer');
-
-  if (mainHeight <= windowHeight - (headerHeight + footerHeight)) {
-    footer.classList.add('bottom-0');
-  } else if (footer.classList.contains('bottom-0')) {
-    footer.classList.remove('bottom-0');
-  }
-}
-
-verifyPageHeight();
-
 const mainContainer = document.querySelector('.main-container');
 const startContainer = document.querySelector('.start-container');
+const startButton = document.querySelector('.btn-start');
 
-verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(startContainer, params, clientId);
+verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(startButton, params, clientId);
 
 if (code || localStorage.getItem('code')) {
   mainContainer.removeChild(startContainer);
-  // const authorizeButton = document.createElement('button');
   mainContainer.innerHTML = `
   <div class="selection-container">
     <div class="selection">
       <div class="selection-text">
         <p>escolha o período</p>
       </div>
-      <div class="btn-container">
-        <button class="selection-btn">últimos 30 dias</button>
-        <button class="selection-btn">últimos 6 meses</button>
-        <button class="selection-btn">desde o início</button>
+      <div class="btn-container period-select">
+        <button id="shortTerm" class="selection-btn">últimos 30 dias</button>
+        <button id="mediumTerm" class="selection-btn">últimos 6 meses</button>
+        <button id="longTerm" class="selection-btn">desde o início</button>
       </div>
     </div>
     
@@ -50,7 +31,7 @@ if (code || localStorage.getItem('code')) {
       <div class="selection-text">
         <p>e a quantidade de músicas</p>
       </div>
-      <div class="btn-container">
+      <div class="btn-container quantity-select">
         <button class="selection-btn">10</button>
         <button class="selection-btn">15</button>
         <button class="selection-btn">20</button>
@@ -70,6 +51,11 @@ if (code || localStorage.getItem('code')) {
     localStorage.setItem('code', code);
     getAccessToken(clientId, code);
   }
+  verifyPageHeight();
 }
+
+verifyPageHeight();
+updatePeriodButtons();
+updateQuantityButtons();
 
 window.addEventListener('resize', verifyPageHeight);
