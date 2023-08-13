@@ -13,6 +13,6 @@
         "import/extensions": 0,
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "no-param-reassign": [2, { "props": false }],
-        "linebreak-style": ["error", "windows"]
+        "linebreak-style": 0
     }
 }
