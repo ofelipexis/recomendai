@@ -1,6 +1,6 @@
 import '../css/style.css';
 import { getAccessToken, verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './modules/authentication.js';
-import { updatePeriodButtons, updateQuantityButtons } from './modules/button-select.js';
+import { updatePeriodButtons, updateQuantityButtons, callGetTracksFunction } from './modules/button-select.js';
 import verifyPageHeight from './modules/page-height.js';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -57,45 +57,6 @@ if (code || localStorage.getItem('code')) {
 verifyPageHeight();
 updatePeriodButtons();
 updateQuantityButtons();
+await callGetTracksFunction();
 
 window.addEventListener('resize', verifyPageHeight);
-
-const btnGetTracks = document.querySelector('.get-tracks');
-
-if (btnGetTracks) {
-  btnGetTracks.addEventListener('click', () => {
-    const periodContainer = document.querySelector('.period-select').children;
-    const quantityContainer = document.querySelector('.quantity-select').children;
-
-    if (periodContainer && quantityContainer) {
-      const periodArray = Array.from(periodContainer);
-      let periodSelected;
-      periodArray.forEach((x) => {
-        if (x.classList.contains('.selected')) {
-          periodSelected = x;
-        }
-      });
-
-      const quantityArray = Array.from(quantityContainer);
-      let quantitySelected;
-      quantityArray.forEach((x) => {
-        if (x.classList.contains('.selected')) {
-          quantitySelected = x;
-        }
-      });
-
-      updatePeriodButtons();
-      updateQuantityButtons();
-
-      if (periodSelected && quantitySelected) {
-        console.log('tão selecionados');
-      } else {
-        console.log('SELECIONE UM DE CADA');
-      }
-    }
-
-    updatePeriodButtons();
-    updateQuantityButtons();
-    console.log('clicou');
-  });
-}
