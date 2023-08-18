@@ -32,10 +32,10 @@ if (code || localStorage.getItem('code')) {
         <p>e a quantidade de músicas</p>
       </div>
       <div class="btn-container quantity-select">
-        <button class="selection-btn">10</button>
+        <button class="selection-btn">9</button>
+        <button class="selection-btn">12</button>
         <button class="selection-btn">15</button>
-        <button class="selection-btn">20</button>
-        <button class="selection-btn">25</button>
+        <button class="selection-btn">18</button>
       </div>
       
       <div class="get-tracks-container">
@@ -58,5 +58,6 @@ verifyPageHeight();
 updatePeriodButtons();
 updateQuantityButtons();
 await callGetTracksFunction();
+verifyPageHeight();
 
 window.addEventListener('resize', verifyPageHeight);

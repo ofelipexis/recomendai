@@ -191,10 +191,18 @@ main .hidden {
   padding: 40px 0 !important;
 }
 
+.padding-top {
+  padding-top: 20px;
+}
+
 .start-container {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+.little-gap {
+  gap: 16px !important;
 }
 
 .start-container p {
@@ -203,6 +211,15 @@ main .hidden {
   max-width: 600px;
   font-size: 1.125rem;
   line-height: 2rem;
+}
+
+.start-container .text-title {
+  font-size: 1.5rem;
+}
+
+.text-title span {
+  color: var(--color-3);
+  font-style: italic;
 }
 
 .btn-start {
@@ -221,6 +238,11 @@ main .hidden {
 .btn-start:hover {
   background-color: var(--color-3);
   cursor: pointer;
+}
+
+.btn-start span {
+  font-style: italic;
+  color: var(--color-3);
 }
 
 .selection-container {
@@ -282,27 +304,56 @@ main .hidden {
   cursor: pointer;
 }
 
-.tracks-container {
-  max-width: 900px;
+.user-tracks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  color: var(--color-1);
+}
+
+.user-tracks-container p {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+.tracks-information-container {
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
-  padding: 100px 0;
+  padding: 40px 0;
 }
 
 .track-information {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
   color: var(--color-1);
   border: solid 2px var(--color-1);
-  border-radius: 8px;
-  padding: 16px 32px;
-  gap: 8px;
-  overflow: hidden;
+  border-radius: 16px;
+  padding: 16px 16px;
+  gap: 16px;
+}
+
+.track-information img {
+  max-width: 60px;
 }
 
 .track-information:hover {
   background-color: var(--color-3);
   cursor: pointer;
+}
+
+.track-info-right {
+  display: block;
+  overflow: hidden;
 }
 
 .track-information .track-title {
