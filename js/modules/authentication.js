@@ -21,7 +21,7 @@ export async function redirectToAuthCodeFlow(clientId) {
   const verifier = generateCodeVerifier(128);
   const challenge = await generateCodeChallenge(verifier);
 
-  localStorage.setItem('verifier', verifier);
+  sessionStorage.setItem('verifier', verifier);
 
   const params = new URLSearchParams();
   params.append('client_id', clientId);
@@ -35,7 +35,7 @@ export async function redirectToAuthCodeFlow(clientId) {
 }
 
 export async function getAccessToken(clientId, code) {
-  const verifier = localStorage.getItem('verifier');
+  const verifier = sessionStorage.getItem('verifier');
 
   const params = new URLSearchParams();
   params.append('client_id', clientId);
@@ -56,7 +56,7 @@ export async function getAccessToken(clientId, code) {
       return response.json();
     })
     .then((data) => {
-      localStorage.setItem('access_token', data.access_token);
+      sessionStorage.setItem('access_token', data.access_token);
     })
     .catch((error) => {
       throw new Error(`Error: ${error}`);

@@ -81,8 +81,8 @@ export async function callGetTracksFunction() {
             getTracksContainer.removeChild(getTracksContainer.firstElementChild);
           }
 
-          if (localStorage.getItem('access_token')) {
-            const token = localStorage.getItem('access_token');
+          if (sessionStorage.getItem('access_token')) {
+            const token = sessionStorage.getItem('access_token');
             const timeRange = periodSelected.id;
             const limit = quantitySelected.innerHTML;
 

@@ -12,7 +12,7 @@ const startButton = document.querySelector('.btn-start');
 
 verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(startButton, params, clientId);
 
-if (code || localStorage.getItem('code')) {
+if (code || sessionStorage.getItem('code')) {
   mainContainer.removeChild(startContainer);
   mainContainer.innerHTML = `
   <div class="selection-container">
@@ -47,8 +47,8 @@ if (code || localStorage.getItem('code')) {
   `;
   mainContainer.classList.add('decrease-padding');
 
-  if (!localStorage.getItem('access_token')) {
-    localStorage.setItem('code', code);
+  if (!sessionStorage.getItem('access_token')) {
+    sessionStorage.setItem('code', code);
     getAccessToken(clientId, code);
   }
   verifyPageHeight();
