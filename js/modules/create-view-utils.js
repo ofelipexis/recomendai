@@ -1,4 +1,5 @@
 import { getAccessToken } from './authentication.js';
+import { updateFavoriteTracksSelection, clearSelection } from './buttons/favorite-tracks-selection.js';
 import verifyPageHeight from './page-height.js';
 
 export function createSelectionView(code, clientId, mainContainer, startContainer) {
@@ -59,7 +60,8 @@ export function createViewWithTracksFromData(data) {
         <div class="tracks-information-container">
         </div>
         <div class="btn-container">
-        <button href="./" class="go-back-btn">voltar</button>
+        <button class="go-back-btn">voltar</button>
+        <button class="clear-selection-btn">limpar</button> 
         <button class="btn-start">recomenda<span>í</span></button>
         </div
       </div>
@@ -105,6 +107,12 @@ export function createViewWithTracksFromData(data) {
       });
     }
     verifyPageHeight();
+    updateFavoriteTracksSelection();
+
+    const clearSelectionBtn = document.querySelector('.clear-selection-btn');
+
+    if (clearSelectionBtn) {
+      clearSelectionBtn.addEventListener('click', clearSelection);
+    }
   }
-  verifyPageHeight();
 }
