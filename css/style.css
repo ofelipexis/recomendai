@@ -140,7 +140,7 @@ body {
 .header-title {
   padding: 8px 16px;
   border-radius: 12px;
-  font-family: "IBM Plex Mono";
+  font-family: 'IBM Plex Mono';
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-1);
@@ -243,6 +243,29 @@ main .hidden {
 .btn-start span {
   font-style: italic;
   color: var(--color-3);
+}
+
+.btn-start:hover span {
+  color: var(--color-4);
+}
+
+.go-back-btn {
+  margin: 0 auto;
+  display: block;
+  background-color: var(--color-2);
+  border: solid 2px var(--color-1);
+  font-family: 'IBM Plex Mono';
+  font-size: 1.5rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--color-1);
+  font-weight: 700;
+}
+
+.go-back-btn:hover {
+  background-color: var(--color-1);
+  color: var(--color-2);
+  cursor: pointer;
 }
 
 .selection-container {

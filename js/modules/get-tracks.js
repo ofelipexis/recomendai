@@ -1,67 +1,5 @@
 import verifyPageHeight from './page-height.js';
-
-function updateViewWithTracks(data) {
-  if (data != null) {
-    const mainContainer = document.querySelector('.main-container');
-    const selectionContainer = document.querySelector('.selection-container');
-
-    if (mainContainer && selectionContainer) {
-      mainContainer.removeChild(selectionContainer);
-      mainContainer.innerHTML = `
-      <div class="user-tracks-container">
-        <p>agora escolha suas favoritas</p>
-        <p>(no mínimo uma e no máximo todas)</p>
-        <div class="tracks-information-container">
-        </div>
-        <div class="btn-container">
-        <button class="btn-start">recomenda<span>í</span></button>
-        </div
-      </div>
-      `;
-    }
-
-    const tracksContainer = document.querySelector('.tracks-information-container');
-
-    if (tracksContainer) {
-      data.items.forEach((track) => {
-        const trackInfo = document.createElement('div');
-        trackInfo.classList.add('track-information');
-
-        const trackInfoLeft = document.createElement('div');
-        trackInfoLeft.classList.add('track-info-left');
-
-        const cover = document.createElement('img');
-        cover.src = `${track.album.images[0].url}`;
-        cover.alt = `album cover: ${track.album.name}`;
-
-        trackInfoLeft.appendChild(cover);
-
-        const trackInfoRight = document.createElement('div');
-        trackInfoRight.classList.add('track-info-right');
-
-        const title = document.createElement('div');
-        title.classList.add('track-title');
-        title.innerHTML = `${track.name}`;
-
-        const artist = document.createElement('div');
-        artist.classList.add('track-artist');
-        const namesArr = track.artists.map((art) => art.name);
-        const names = namesArr.join(', ');
-        artist.innerHTML = `${names}`;
-
-        trackInfoRight.appendChild(title);
-        trackInfoRight.appendChild(artist);
-
-        trackInfo.appendChild(trackInfoLeft);
-        trackInfo.appendChild(trackInfoRight);
-
-        tracksContainer.appendChild(trackInfo);
-      });
-    }
-    verifyPageHeight();
-  }
-  verifyPageHeight();
-}
+import { createViewWithTracksFromData } from './create-view-utils.js';
 
 export default async function getTracks(token, timeRange, limit) {
   const timeRangeFormatted = timeRange.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
@@ -81,8 +19,7 @@ export default async function getTracks(token, timeRange, limit) {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
-      updateViewWithTracks(data);
+      createViewWithTracksFromData(data);
       verifyPageHeight();
     })
     .finally();
