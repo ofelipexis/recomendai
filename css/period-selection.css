@@ -1,0 +1,45 @@
+@import '/css/base.css';
+
+.selection-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.selection {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.selection-text {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+.get-tracks-container {
+  margin: 0 auto;
+  padding: 80px;
+}
+
+@media (max-width: 800px) {
+  .period-select {
+    flex-direction: column;
+    align-items: center;
+  }
+  .quantity-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .selection {
+    gap: 0;
+  }
+  .get-tracks-container {
+    padding: 40px;
+  }
+}

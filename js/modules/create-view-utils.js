@@ -1,6 +1,9 @@
 import { getAccessToken } from './authentication.js';
 import { updateFavoriteTracksSelection, clearSelection } from './buttons/favorite-tracks-selection.js';
 import verifyPageHeight from './page-height.js';
+// eslint-disable-next-line import/no-cycle
+import { callGetRelatedArtists } from './button-functions-utils.js';
+import { savePlaylist } from './get-tracks.js';
 
 export function createSelectionView(code, clientId, mainContainer, startContainer) {
   if (code || sessionStorage.getItem('code')) {
@@ -62,7 +65,7 @@ export function createViewWithTracksFromData(data) {
         <div class="btn-container">
         <button class="go-back-btn">voltar</button>
         <button class="clear-selection-btn">limpar</button> 
-        <button class="btn-start">recomenda<span>í</span></button>
+        <button class="btn-start get-recommendations">recomenda<span>í</span></button>
         </div
       </div>
       `;
@@ -74,6 +77,8 @@ export function createViewWithTracksFromData(data) {
       data.items.forEach((track) => {
         const trackInfo = document.createElement('div');
         trackInfo.classList.add('track-information');
+        trackInfo.dataset.artistid = `${track.artists[0].id}`;
+        trackInfo.id = track.id;
 
         const trackInfoLeft = document.createElement('div');
         trackInfoLeft.classList.add('track-info-left');
@@ -106,13 +111,103 @@ export function createViewWithTracksFromData(data) {
         tracksContainer.appendChild(trackInfo);
       });
     }
+    window.addEventListener('resize', verifyPageHeight);
     verifyPageHeight();
     updateFavoriteTracksSelection();
 
-    const clearSelectionBtn = document.querySelector('.clear-selection-btn');
+    const goBackBtn = document.querySelector('.go-back-btn');
+    if (goBackBtn) {
+      goBackBtn.addEventListener('click', () => {
+        window.location.reload();
+      });
+    }
 
+    const clearSelectionBtn = document.querySelector('.clear-selection-btn');
     if (clearSelectionBtn) {
       clearSelectionBtn.addEventListener('click', clearSelection);
+    }
+
+    const getRecommendationsBtn = document.querySelector('.get-recommendations');
+    if (getRecommendationsBtn) {
+      getRecommendationsBtn.addEventListener('click', callGetRelatedArtists);
+    }
+  }
+}
+
+export function createViewWithRecommendedTracksFromData(data) {
+  if (data != null) {
+    const mainContainer = document.querySelector('.main-container');
+    const userTracksContainer = document.querySelector('.user-tracks-container');
+
+    if (mainContainer && userTracksContainer) {
+      mainContainer.removeChild(userTracksContainer);
+      mainContainer.innerHTML = `
+      <div class="recommendation-tracks-container">
+        <p>aqui estão nossas recomendações para você!</p>
+        <div class="tracks-information-container">
+        </div>
+        <div class="btn-container">
+        <button class="go-back-btn">refazer</button>
+        <button class="btn-start save-playlist">salvar playlist</button>
+        </div
+      </div>
+      `;
+    }
+
+    const tracksContainer = document.querySelector('.tracks-information-container');
+
+    if (tracksContainer) {
+      data.forEach((track) => {
+        const trackInfo = document.createElement('div');
+        trackInfo.classList.add('track-information');
+        trackInfo.dataset.artistid = `${track.artists[0].id}`;
+        trackInfo.dataset.uri = `${track.uri}`;
+        // trackInfo.id = `${track.artists[0].id}`;
+
+        const trackInfoLeft = document.createElement('div');
+        trackInfoLeft.classList.add('track-info-left');
+
+        const cover = document.createElement('img');
+        cover.src = `${track.album.images[0].url}`;
+        cover.alt = `album cover: ${track.album.name}`;
+
+        trackInfoLeft.appendChild(cover);
+
+        const trackInfoRight = document.createElement('div');
+        trackInfoRight.classList.add('track-info-right');
+
+        const title = document.createElement('div');
+        title.classList.add('track-title');
+        title.innerHTML = `${track.name}`;
+
+        const artist = document.createElement('div');
+        artist.classList.add('track-artist');
+        const namesArr = track.artists.map((art) => art.name);
+        const names = namesArr.join(', ');
+        artist.innerHTML = `${names}`;
+
+        trackInfoRight.appendChild(title);
+        trackInfoRight.appendChild(artist);
+
+        trackInfo.appendChild(trackInfoLeft);
+        trackInfo.appendChild(trackInfoRight);
+
+        tracksContainer.appendChild(trackInfo);
+      });
+    }
+    window.addEventListener('resize', verifyPageHeight);
+    verifyPageHeight();
+
+    const goBackBtn = document.querySelector('.go-back-btn');
+    if (goBackBtn) {
+      goBackBtn.addEventListener('click', () => {
+        window.location.reload();
+      });
+    }
+
+    const savePlaylistBtn = document.querySelector('.save-playlist');
+    if (savePlaylistBtn) {
+      savePlaylistBtn.addEventListener('click', savePlaylist);
     }
   }
 }

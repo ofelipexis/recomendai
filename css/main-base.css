@@ -1,0 +1,27 @@
+@import '/css/base.css';
+
+.main-container {
+  max-width: 900px;
+  padding: 100px 0;
+  margin: 0 auto;
+  gap: 40px;
+  color: var(--color-1);
+}
+
+.decrease-padding {
+  padding: 40px 0 !important;
+}
+
+.padding-top {
+  padding-top: 20px;
+}
+
+.little-gap {
+  gap: 16px !important;
+}
+
+@media (max-width: 800px) {
+  .main-container {
+    padding: 40px 20px;
+  }
+}
