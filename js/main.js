@@ -1,6 +1,9 @@
 import '../css/style.css';
 import { verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './modules/authentication.js';
-import { updatePeriodButtons, updateQuantityButtons, callGetTracksFunction } from './modules/button-functions-utils.js';
+import {
+  updatePeriodButtons, updateQuantityButtons,
+  callGetTracksFunction,
+} from './modules/button-functions-utils.js';
 import { createSelectionView } from './modules/create-view-utils';
 import verifyPageHeight from './modules/page-height.js';
 
@@ -16,6 +19,6 @@ createSelectionView(code, clientId, mainContainer, startContainer);
 verifyPageHeight();
 updatePeriodButtons();
 updateQuantityButtons();
-await callGetTracksFunction();
+callGetTracksFunction();
 verifyPageHeight();
 window.addEventListener('resize', verifyPageHeight);

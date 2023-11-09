@@ -1,4 +1,5 @@
-import getTracks from './get-tracks.js';
+// eslint-disable-next-line import/no-cycle, import/named
+import getTracks, { getRecommendedTracks, getRelatedArtists } from './get-tracks.js';
 
 const className = 'selected';
 
@@ -91,5 +92,40 @@ export async function callGetTracksFunction() {
         }
       }
     });
+  }
+}
+
+export async function callGetRelatedArtists() {
+  const userTracksContainer = document.querySelector('.tracks-information-container');
+
+  if (userTracksContainer) {
+    const selecteds = userTracksContainer.querySelectorAll('.selected');
+
+    const artistsIds = [];
+    if (selecteds && selecteds.length > 0) {
+      selecteds.forEach((element) => {
+        if (!artistsIds.includes(element.dataset.artistid)) {
+          artistsIds.push(element.dataset.artistid);
+        }
+      });
+    }
+
+    if (artistsIds.length > 0) {
+      if (sessionStorage.getItem('access_token')) {
+        const token = sessionStorage.getItem('access_token');
+        const relatedArtists = await getRelatedArtists(token, artistsIds);
+
+        const finalArtistsIds = [];
+        if (relatedArtists.length > 18) {
+          while (finalArtistsIds.length < 18) {
+            const index = Math.floor(Math.random() * relatedArtists.length);
+            if (!finalArtistsIds.includes(relatedArtists[index])) {
+              finalArtistsIds.push(relatedArtists[index]);
+            }
+          }
+        }
+        await getRecommendedTracks(token, finalArtistsIds);
+      }
+    }
   }
 }

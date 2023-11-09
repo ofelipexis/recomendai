@@ -37,30 +37,34 @@ export async function redirectToAuthCodeFlow(clientId) {
 export async function getAccessToken(clientId, code) {
   const verifier = sessionStorage.getItem('verifier');
 
-  const params = new URLSearchParams();
-  params.append('client_id', clientId);
-  params.append('grant_type', 'authorization_code');
-  params.append('code', code);
-  params.append('redirect_uri', import.meta.env.VITE_REDIRECT_URI);
-  params.append('code_verifier', verifier);
+  if (verifier && code !== null) {
+    const params = new URLSearchParams();
+    params.append('client_id', clientId);
+    params.append('grant_type', 'authorization_code');
+    params.append('code', code);
+    params.append('redirect_uri', import.meta.env.VITE_REDIRECT_URI);
+    params.append('code_verifier', verifier);
 
-  await fetch('https://accounts.spotify.com/api/token?', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP status  ${response.status}`);
-      }
-      return response.json();
+    await fetch('https://accounts.spotify.com/api/token?', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params,
     })
-    .then((data) => {
-      sessionStorage.setItem('access_token', data.access_token);
-    })
-    .catch((error) => {
-      throw new Error(`Error: ${error}`);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          sessionStorage.clear();
+          window.location.reload();
+          throw new Error(`HTTP status  ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        sessionStorage.setItem('access_token', data.access_token);
+      })
+      .catch((error) => {
+        throw new Error(`Error: ${error}`);
+      });
+  }
 }
 
 export function verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(element, params, clientId) {
@@ -72,4 +76,28 @@ export function verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken(element, par
     code = params.get('code');
     getAccessToken(clientId, code);
   });
+}
+
+export async function getUserId(token) {
+  const response = await fetch('https://api.spotify.com/v1/me', {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      sessionStorage.clear();
+      window.location.reload();
+    }
+    throw new Error(`HTTP status  ${response.status}`);
+  }
+
+  const me = await response.json();
+
+  let userId;
+  if (me != null) {
+    userId = me.id;
+  }
+
+  return userId;
 }

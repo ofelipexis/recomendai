@@ -1,0 +1,29 @@
+:root {
+  --color-0: #fbfaff;
+  --color-1: #f8f4f1;
+  --color-2: #181818;
+  --color-3: #8381b9;
+  --color-4: #f55709;
+  --color-5: #A71C1C;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a:link {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-2);
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'IBM Plex Mono', monospace;
+}
