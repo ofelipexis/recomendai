@@ -126,8 +126,8 @@ export function createViewWithTracksFromData(data) {
         tracksContainer.appendChild(trackInfo);
       });
     }
-    window.addEventListener('resize', verifyPageHeight);
     verifyPageHeight();
+    window.addEventListener('resize', verifyPageHeight);
     updateFavoriteTracksSelection();
 
     const goBackBtn = document.querySelector('.go-back-btn');
@@ -225,8 +225,8 @@ export function createViewWithRecommendedTracksFromData(data) {
         tracksContainer.appendChild(trackInfo);
       });
     }
-    window.addEventListener('resize', verifyPageHeight);
     verifyPageHeight();
+    window.addEventListener('resize', verifyPageHeight);
 
     const goBackBtn = document.querySelector('.go-back-btn');
     if (goBackBtn) {
