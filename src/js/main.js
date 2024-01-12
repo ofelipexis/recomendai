@@ -3,6 +3,8 @@ import { verifyCodeAndRedirectToAuthCodeFlowOrGetAccessToken } from './modules/a
 import {
   updatePeriodButtons, updateQuantityButtons,
   callGetTracksFunction,
+  acceptTerms,
+  openTerms,
 } from './modules/button-functions-utils.js';
 import { createSelectionView } from './modules/create-view-utils';
 import verifyPageHeight from './modules/page-height.js';
@@ -21,4 +23,6 @@ updatePeriodButtons();
 updateQuantityButtons();
 callGetTracksFunction();
 verifyPageHeight();
+acceptTerms();
+openTerms();
 window.addEventListener('resize', verifyPageHeight);

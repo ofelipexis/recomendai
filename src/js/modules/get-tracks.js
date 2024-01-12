@@ -107,25 +107,25 @@ export async function savePlaylist() {
         public: true,
       };
 
-      const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+      const responseCreatePlaylist = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
 
-      if (!response.ok) {
-        if (response.status === 401) {
+      if (!responseCreatePlaylist.ok) {
+        if (responseCreatePlaylist.status === 401) {
           sessionStorage.clear();
           window.location.reload();
         }
-        throw new Error(`HTTP status  ${response.status}`);
+        throw new Error(`HTTP status  ${responseCreatePlaylist.status}`);
       }
 
-      const data = await response.json();
+      const data = await responseCreatePlaylist.json();
 
       if (data != null) {
         const playlistId = data.id;
-        const tracks = document.querySelectorAll('.track-information');
+        const tracks = document.querySelectorAll('.recommendation-track-information');
         const uris = [];
 
         if (tracks) {
@@ -135,25 +135,38 @@ export async function savePlaylist() {
         }
 
         if (uris !== '') {
-          const body2 = {
+          const uriBody = {
             uris,
           };
 
-          const response2 = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+          const responseAddTracksToPlaylist = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'POST',
             headers: { Authorization: `Bearer ${token}` },
-            body: JSON.stringify(body2),
+            body: JSON.stringify(uriBody),
           });
 
-          if (response2.status !== 201) {
-            if (response2.status === 401) {
+          if (responseAddTracksToPlaylist.status !== 201) {
+            if (responseAddTracksToPlaylist.status === 401) {
               sessionStorage.clear();
               window.location.reload();
             }
-            throw new Error(`HTTP status  ${response2.status}`);
+            throw new Error(`HTTP status  ${responseAddTracksToPlaylist.status}`);
           }
 
-          await response2.json();
+          await responseAddTracksToPlaylist.json();
+        }
+
+        const playlistSavedModal = document.querySelector('#playlist-container');
+        const accessPlaylistBtn = document.querySelector('.btn-playlist');
+        const closePlaylistModal = document.querySelector('#close-playlist');
+
+        if (playlistSavedModal && accessPlaylistBtn && closePlaylistModal) {
+          accessPlaylistBtn.href = `${data.external_urls.spotify}`;
+          playlistSavedModal.style.display = 'block';
+
+          closePlaylistModal.addEventListener('click', () => {
+            playlistSavedModal.style.display = 'none';
+          });
         }
       }
     }

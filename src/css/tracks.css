@@ -1,0 +1,145 @@
+@import './base.css';
+
+.user-tracks-container,
+.recommendation-tracks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  color: var(--color-1);
+}
+
+.user-tracks-container p,
+.recommendation-tracks-container p {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+.tracks-information-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.tracks-information-container .track-selected {
+  box-shadow: 4px 4px var(--color-3), inset -40px 0px var(--color-4);
+  padding-right: 48px;
+  width: 320px;
+}
+
+.track-information,
+.recommendation-track-information {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border: solid 2px var(--color-1);
+  cursor: pointer;
+  padding: 8px;
+  box-shadow: 4px 4px var(--color-3);
+  gap: 8px;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 320px;
+  position: relative;
+}
+
+.track-information img,
+.recommendation-track-information img {
+  max-width: 60px;
+  transition: opacity .3s ease;
+}
+
+.track-information:hover {
+  background-color: var(--color-4);
+  scale: .98;
+  transition: .3s;
+}
+
+.track-info-left {
+  position: relative;
+  display: inline-block;
+}
+
+.track-info-right {
+  display: block;
+  overflow: hidden;
+}
+
+.track-information .track-title,
+.track-information .track-artist,
+.recommendation-track-information .track-title,
+.recommendation-track-information .track-artist {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-title {
+  font-weight: 700;
+}
+
+.track-artist {
+  font-size: .875rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay img {
+  display: none;
+  width: 20px;
+}
+
+.track-info-left:hover .overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.track-info-left:hover .overlay img {
+  display: block;  
+  fill: var(--color-1);
+}
+
+@media (max-width: 1120px) {
+  .user-tracks-container {
+    max-width: 900px;
+  }
+  .tracks-information-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0 32px;
+  }
+}
+
+@media (max-width: 800px) {
+  .user-tracks-container {
+    max-width: 480px;
+  }
+  .tracks-information-container {    
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+    margin: 0 32px;
+    max-width: calc(100vw - 64px);
+  }
+  .user-tracks-container p,
+  .recommendation-tracks-container p {
+    padding: 0 16px;
+  }
+}

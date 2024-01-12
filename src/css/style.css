@@ -1,0 +1,122 @@
+@import './base.css';
+@import './header.css';
+@import './main-base.css';
+@import './start-page.css';
+@import './period-selection.css';
+@import './tracks.css';
+@import './footer.css';
+@import './button.css';
+
+.error {
+  margin-bottom: 20px;
+  border: solid 2px var(--color-5);
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: var(--color-5);
+  background-color: rgba(167, 28, 28, .1);
+  font-weight: 700;
+}
+
+.success {
+  margin-bottom: 20px;
+  border: solid 2px greenyellow;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: greenyellow;
+  background-color: rgba(173, 255, 47, .1);
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .btn-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+.modal-container {
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+}
+
+.modal-container .text-title {
+  margin: 0 auto;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: .1rem;
+  text-align: center;
+}
+
+.modal-container .text-regular {
+  margin: 8px 0;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.175rem;
+}
+
+.modal-content {
+  background-color: var(--color-1);
+  color: var(--color-2);
+  border: 2px solid var(--color-3);
+  max-width: 75%;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(1rem);
+  animation: slideUp 0.5s forwards;
+}
+
+.modal-content span {
+  color: var(--color-3);
+}
+
+.modal-container #link {
+  font-weight: 700;
+  color: var(--color-3);
+  text-decoration: underline;
+}
+
+.modal-container #link:hover {
+  color: var(--color-4);
+}
+
+.playlist-container {
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+}
+
+.playlist-content {
+  background-color: var(--color-1);
+  color: var(--color-2);
+  border: 2px solid var(--color-3);
+  max-width: 75%;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(1rem);
+  animation: slideUp 0.5s forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}

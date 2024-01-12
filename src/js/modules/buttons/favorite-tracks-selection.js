@@ -1,6 +1,6 @@
 export function updateFavoriteTracksSelection() {
   const tracks = document.querySelectorAll('.track-information');
-  const selected = 'selected';
+  const selected = 'track-selected';
 
   if (tracks.length) {
     tracks.forEach((element) => {
@@ -17,7 +17,7 @@ export function updateFavoriteTracksSelection() {
 
 export function clearSelection() {
   const tracks = document.querySelectorAll('.track-information');
-  const selected = 'selected';
+  const selected = 'track-selected';
 
   if (tracks.length) {
     tracks.forEach((element) => {

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle, import/named
 import getTracks, { getRecommendedTracks, getRelatedArtists } from './get-tracks.js';
 
-const className = 'selected';
+const className = 'btn-selected';
 
 export function updatePeriodButtons() {
   const periodSelectButtons = document.querySelectorAll('.period-select button');
@@ -53,7 +53,7 @@ export async function callGetTracksFunction() {
         const periodArray = Array.from(periodContainer);
         let periodSelected;
         periodArray.forEach((x) => {
-          if (x.classList.contains('selected')) {
+          if (x.classList.contains('btn-selected')) {
             periodSelected = x;
           }
         });
@@ -61,7 +61,7 @@ export async function callGetTracksFunction() {
         const quantityArray = Array.from(quantityContainer);
         let quantitySelected;
         quantityArray.forEach((x) => {
-          if (x.classList.contains('selected')) {
+          if (x.classList.contains('btn-selected')) {
             quantitySelected = x;
           }
         });
@@ -85,7 +85,7 @@ export async function callGetTracksFunction() {
           if (sessionStorage.getItem('access_token')) {
             const token = sessionStorage.getItem('access_token');
             const timeRange = periodSelected.id;
-            const limit = quantitySelected.innerHTML;
+            const limit = quantitySelected.id;
 
             await getTracks(token, timeRange, limit);
           }
@@ -99,7 +99,7 @@ export async function callGetRelatedArtists() {
   const userTracksContainer = document.querySelector('.tracks-information-container');
 
   if (userTracksContainer) {
-    const selecteds = userTracksContainer.querySelectorAll('.selected');
+    const selecteds = userTracksContainer.querySelectorAll('.track-selected');
 
     const artistsIds = [];
     if (selecteds && selecteds.length > 0) {
@@ -128,4 +128,28 @@ export async function callGetRelatedArtists() {
       }
     }
   }
+}
+
+export function acceptTerms() {
+  const termsAccepted = localStorage.getItem('termsAccepted');
+  const acceptBtn = document.querySelector('#close-terms');
+  const container = document.querySelector('#terms-modal');
+
+  if (!termsAccepted || termsAccepted === 'false') {
+    container.style.display = 'block';
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('termsAccepted', true);
+    container.style.display = 'none';
+  });
+}
+
+export function openTerms() {
+  const privacyPolicyBtn = document.querySelector('#privacy-policy');
+  const container = document.querySelector('#terms-modal');
+
+  privacyPolicyBtn.addEventListener('click', () => {
+    container.style.display = 'block';
+  });
 }

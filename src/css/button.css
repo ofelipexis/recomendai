@@ -1,0 +1,107 @@
+@import './base.css';
+
+a .btn{
+  color: currentColor;
+}
+
+.btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  border: solid 2px;
+  box-shadow: 4px 4px var(--color-3);
+  cursor: pointer;
+  padding: 16px 32px;
+}
+
+.btn:hover {
+  scale: .98;
+  transition: .3s;
+}
+
+.btn-small {
+  font-size: 1rem;
+}
+
+.btn-large {
+  font-size: 1.5rem;
+  display: block;
+}
+
+.btn-start {
+  background-color: var(--color-4);
+  color: var(--color-1);
+  align-self: center;
+}
+
+.btn-start:hover {
+  background-color: var(--color-3);
+}
+
+.btn-start span {
+  font-style: italic;
+  color: var(--color-3);
+}
+
+.btn-start:hover span {
+  color: var(--color-4);
+}
+
+.go-back-btn {
+  background-color: var(--color-2);
+  color: var(--color-1);
+}
+
+.go-back-btn:hover {
+  background-color: var(--color-1);
+  color: var(--color-2);
+}
+
+.clear-selection-btn {
+  display: block;
+  background-color: var(--color-2);
+  color: var(--color-1);
+}
+
+.clear-selection-btn:hover {
+  background-color: var(--color-1);
+  color: var(--color-2);
+}
+
+.selection-btn {
+  background-color: var(--color-4);
+  color: var(--color-1);
+  min-width: 120px;
+}
+
+.selection-btn:hover {
+  background-color: var(--color-1);
+  color: var(--color-2);
+}
+
+.btn-selected {
+  background-color: var(--color-3);
+}
+
+.btn-modal {
+  background-color: var(--color-3);
+  color: var(--color-2);
+}
+
+.btn-modal:hover {
+  background-color: var(--color-4);
+}
+
+.btn-close:hover {
+  background-color: var(--color-2);
+  color: var(--color-1);
+}
+
+.btn-footer {
+  background-color: var(--color-2);
+  color: var(--color-1);
+}
+
+.btn-footer:hover {
+  background-color: var(--color-1);
+  color: var(--color-2);
+}

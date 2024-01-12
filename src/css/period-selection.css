@@ -1,4 +1,4 @@
-@import '/css/base.css';
+@import './base.css';
 
 .selection-container {
   margin: 0 auto;
@@ -23,6 +23,8 @@
 }
 
 .get-tracks-container {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   padding: 80px;
 }

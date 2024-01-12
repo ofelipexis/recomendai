@@ -15,9 +15,9 @@ export function createSelectionView(code, clientId, mainContainer, startContaine
           <p>escolha o período</p>
         </div>
         <div class="btn-container period-select">
-          <button id="shortTerm" class="selection-btn">últimos 30 dias</button>
-          <button id="mediumTerm" class="selection-btn">últimos 6 meses</button>
-          <button id="longTerm" class="selection-btn">desde o início</button>
+          <button id="shortTerm" class="btn btn-small selection-btn">últimos 30 dias</button>
+          <button id="mediumTerm" class="btn btn-small selection-btn">últimos 6 meses</button>
+          <button id="longTerm" class="btn btn-small selection-btn">desde o início</button>
         </div>
       </div>
       
@@ -26,14 +26,14 @@ export function createSelectionView(code, clientId, mainContainer, startContaine
           <p>e a quantidade de músicas</p>
         </div>
         <div class="btn-container quantity-select">
-          <button class="selection-btn">9</button>
-          <button class="selection-btn">12</button>
-          <button class="selection-btn">15</button>
-          <button class="selection-btn">18</button>
+          <button class="btn btn-small selection-btn" id="9">9 músicas</button>
+          <button class="btn btn-small selection-btn" id="12">12 músicas</button>
+          <button class="btn btn-small selection-btn" id="15">15 músicas</button>
+          <button class="btn btn-small selection-btn" id="18">18 músicas</button>
         </div>
         
         <div class="get-tracks-container">
-          <button class="btn-start get-tracks">vamos lá!</button>
+          <button class="btn btn-large btn-start get-tracks">vamos lá!</button>
         </div>
         
       </div>
@@ -63,10 +63,10 @@ export function createViewWithTracksFromData(data) {
         <div class="tracks-information-container">
         </div>
         <div class="btn-container">
-        <button class="go-back-btn">voltar</button>
-        <button class="clear-selection-btn">limpar</button> 
-        <button class="btn-start get-recommendations">recomenda<span>í</span></button>
-        </div
+        <button class="btn btn-large go-back-btn">voltar</button>
+        <button class="btn btn-large clear-selection-btn">limpar</button> 
+        <button class="btn btn-large btn-start get-recommendations">recomenda<span>í</span></button>
+        </div>
       </div>
       `;
     }
@@ -83,11 +83,26 @@ export function createViewWithTracksFromData(data) {
         const trackInfoLeft = document.createElement('div');
         trackInfoLeft.classList.add('track-info-left');
 
+        const trackLink = document.createElement('a');
+        trackLink.title = 'tocar no spotify';
+        trackLink.target = '_blank';
+        trackLink.href = `${track.external_urls.spotify}`;
+
         const cover = document.createElement('img');
         cover.src = `${track.album.images[0].url}`;
         cover.alt = `album cover: ${track.album.name}`;
 
-        trackInfoLeft.appendChild(cover);
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+
+        const play = document.createElement('img');
+        play.src = '/src/img/play.svg';
+
+        overlay.appendChild(play);
+        trackLink.appendChild(cover);
+        trackLink.appendChild(overlay);
+
+        trackInfoLeft.appendChild(trackLink);
 
         const trackInfoRight = document.createElement('div');
         trackInfoRight.classList.add('track-info-right');
@@ -147,8 +162,8 @@ export function createViewWithRecommendedTracksFromData(data) {
         <div class="tracks-information-container">
         </div>
         <div class="btn-container">
-        <button class="go-back-btn">refazer</button>
-        <button class="btn-start save-playlist">salvar playlist</button>
+        <button class="btn btn-large go-back-btn">refazer</button>
+        <button class="btn btn-large btn-start save-playlist">salvar playlist</button>
         </div
       </div>
       `;
@@ -159,19 +174,34 @@ export function createViewWithRecommendedTracksFromData(data) {
     if (tracksContainer) {
       data.forEach((track) => {
         const trackInfo = document.createElement('div');
-        trackInfo.classList.add('track-information');
+        trackInfo.classList.add('recommendation-track-information');
         trackInfo.dataset.artistid = `${track.artists[0].id}`;
         trackInfo.dataset.uri = `${track.uri}`;
-        // trackInfo.id = `${track.artists[0].id}`;
+        trackInfo.id = `${track.artists[0].id}`;
 
         const trackInfoLeft = document.createElement('div');
         trackInfoLeft.classList.add('track-info-left');
+
+        const trackLink = document.createElement('a');
+        trackLink.title = 'tocar no spotify';
+        trackLink.target = '_blank';
+        trackLink.href = `${track.external_urls.spotify}`;
 
         const cover = document.createElement('img');
         cover.src = `${track.album.images[0].url}`;
         cover.alt = `album cover: ${track.album.name}`;
 
-        trackInfoLeft.appendChild(cover);
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+
+        const play = document.createElement('img');
+        play.src = '/src/img/play.svg';
+
+        overlay.appendChild(play);
+        trackLink.appendChild(cover);
+        trackLink.appendChild(overlay);
+
+        trackInfoLeft.appendChild(trackLink);
 
         const trackInfoRight = document.createElement('div');
         trackInfoRight.classList.add('track-info-right');
