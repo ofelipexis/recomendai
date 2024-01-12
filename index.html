@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="icon" href="/recomendai/assets/favicon-5a98ab7b.svg" type="image/svg+xml">
     <title>recomendaí • playlists baseadas no que você ouve</title>
-    <script type="module" crossorigin src="/recomendai/assets/index-dd76d8b0.js"></script>
-    <link rel="stylesheet" href="/recomendai/assets/index-6cbd3158.css">
+    <script type="module" crossorigin src="/recomendai/assets/index-e0a0a513.js"></script>
+    <link rel="stylesheet" href="/recomendai/assets/index-51a30a07.css">
   </head>
   <body>
     <header>
@@ -25,16 +25,41 @@
           <p>com base nas suas músicas mais ouvidas, você nos diz quais suas preferidas e nós encontraremos recomendações para você! =)</p>
         </div>
         <div class="start-container start-btn-container padding-top">
-          <button class="btn-start" type="button">iniciar</button>            
+          <button class="btn btn-large btn-start" type="button">iniciar</button>            
         </div>
       </div>
     </main>
 
     <footer id="footer">
       <div class="footer-container">
-        <p>feito por <a target="_blank" href="https://github.com/ofelipexis">ofelipexis</a></p>
+        <div class="btn btn-small btn-footer" id="privacy-policy">política de privacidade</div>
+        <div><p>feito por <a class="btn btn-small btn-footer" target="_blank" href="https://github.com/ofelipexis">ofelipexis</a></p></div>        
       </div>
     </footer>
+    
+    <div id="terms-modal" class="modal-container">
+      <div class="modal-content">
+        <p class="text-title">política de privacidade</p>
+        <p class="text-regular"><strong>recomenda<span>í</span></strong> é um app de código aberto alimentado pela web API do Spotify</p>
+        <p class="text-regular">ao utilizá-lo, você concorda com o uso dos seus dados do Spotify, tais como nome de usuário, principais artistas e faixas e a criação de playlists personalizadas</p>
+        <p class="text-regular">os dados utilizados <strong>não</strong> são coletados e <strong>não</strong> são armazenados, e também <strong>não</strong> compartilhamos essas informações com terceiros</p>
+        <p class="text-regular">caso queira, você pode revogar o acesso do app diretamente na <a id="link" target="_blank" href="https://www.spotify.com/us/account/apps/">sua conta</a> dentro do Spotify</p>
+        <div>
+          <button id="close-terms" class="btn btn-small btn-modal">concordar e fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="playlist-container" class="modal-container">
+      <div class="modal-content">
+        <p class="text-title">playlist criada com sucesso!</p>
+        <p class="text-regular">agora você pode acessar sua playlist e ouvir nossas recomendações!</p>
+        <div>
+          <a target="_blank" class="btn btn-small btn-modal btn-playlist">acessar no spotify</a>
+          <button id="close-playlist" class="btn btn-small btn-close">fechar</button>
+        </div>
+      </div>
+    </div>
 
     
   </body>
