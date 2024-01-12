@@ -102,16 +102,16 @@
   justify-content: center;
 }
 
-.overlay img {
+.overlay div {
   display: none;
-  width: 20px;
+  font-size: 2rem;
 }
 
 .track-info-left:hover .overlay {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.track-info-left:hover .overlay img {
+.track-info-left:hover .overlay div {
   display: block;  
   fill: var(--color-1);
 }

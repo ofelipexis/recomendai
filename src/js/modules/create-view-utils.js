@@ -95,8 +95,8 @@ export function createViewWithTracksFromData(data) {
         const overlay = document.createElement('div');
         overlay.classList.add('overlay');
 
-        const play = document.createElement('img');
-        play.src = '/src/img/play.svg';
+        const play = document.createElement('div');
+        play.innerText = '▶︎';
 
         overlay.appendChild(play);
         trackLink.appendChild(cover);
@@ -195,7 +195,7 @@ export function createViewWithRecommendedTracksFromData(data) {
         overlay.classList.add('overlay');
 
         const play = document.createElement('img');
-        play.src = '/src/img/play.svg';
+        play.innerText = '▶︎';
 
         overlay.appendChild(play);
         trackLink.appendChild(cover);
