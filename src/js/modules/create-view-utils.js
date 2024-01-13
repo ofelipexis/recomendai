@@ -80,33 +80,6 @@ export function createViewWithTracksFromData(data) {
         trackInfo.dataset.artistid = `${track.artists[0].id}`;
         trackInfo.id = track.id;
 
-        const trackInfoLeft = document.createElement('div');
-        trackInfoLeft.classList.add('track-info-left');
-
-        const trackLink = document.createElement('a');
-        trackLink.title = 'tocar no spotify';
-        trackLink.target = '_blank';
-        trackLink.href = `${track.external_urls.spotify}`;
-
-        const cover = document.createElement('img');
-        cover.src = `${track.album.images[0].url}`;
-        cover.alt = `album cover: ${track.album.name}`;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('overlay');
-
-        const play = document.createElement('div');
-        play.innerText = '▶︎';
-
-        overlay.appendChild(play);
-        trackLink.appendChild(cover);
-        trackLink.appendChild(overlay);
-
-        trackInfoLeft.appendChild(trackLink);
-
-        const trackInfoRight = document.createElement('div');
-        trackInfoRight.classList.add('track-info-right');
-
         const title = document.createElement('div');
         title.classList.add('track-title');
         title.innerHTML = `${track.name}`;
@@ -117,11 +90,8 @@ export function createViewWithTracksFromData(data) {
         const names = namesArr.join(', ');
         artist.innerHTML = `${names}`;
 
-        trackInfoRight.appendChild(title);
-        trackInfoRight.appendChild(artist);
-
-        trackInfo.appendChild(trackInfoLeft);
-        trackInfo.appendChild(trackInfoRight);
+        trackInfo.appendChild(title);
+        trackInfo.appendChild(artist);
 
         tracksContainer.appendChild(trackInfo);
       });
@@ -179,33 +149,6 @@ export function createViewWithRecommendedTracksFromData(data) {
         trackInfo.dataset.uri = `${track.uri}`;
         trackInfo.id = `${track.artists[0].id}`;
 
-        const trackInfoLeft = document.createElement('div');
-        trackInfoLeft.classList.add('track-info-left');
-
-        const trackLink = document.createElement('a');
-        trackLink.title = 'tocar no spotify';
-        trackLink.target = '_blank';
-        trackLink.href = `${track.external_urls.spotify}`;
-
-        const cover = document.createElement('img');
-        cover.src = `${track.album.images[0].url}`;
-        cover.alt = `album cover: ${track.album.name}`;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('overlay');
-
-        const play = document.createElement('img');
-        play.innerText = '▶︎';
-
-        overlay.appendChild(play);
-        trackLink.appendChild(cover);
-        trackLink.appendChild(overlay);
-
-        trackInfoLeft.appendChild(trackLink);
-
-        const trackInfoRight = document.createElement('div');
-        trackInfoRight.classList.add('track-info-right');
-
         const title = document.createElement('div');
         title.classList.add('track-title');
         title.innerHTML = `${track.name}`;
@@ -216,11 +159,8 @@ export function createViewWithRecommendedTracksFromData(data) {
         const names = namesArr.join(', ');
         artist.innerHTML = `${names}`;
 
-        trackInfoRight.appendChild(title);
-        trackInfoRight.appendChild(artist);
-
-        trackInfo.appendChild(trackInfoLeft);
-        trackInfo.appendChild(trackInfoRight);
+        trackInfo.appendChild(title);
+        trackInfo.appendChild(artist);
 
         tracksContainer.appendChild(trackInfo);
       });

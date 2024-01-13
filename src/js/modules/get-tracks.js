@@ -88,6 +88,7 @@ export async function getRecommendedTracks(token, finalArtistsIds) {
 
   await Promise.all(fetchPromises);
   createViewWithRecommendedTracksFromData(recommendations);
+  verifyPageHeight();
 }
 
 export async function savePlaylist() {

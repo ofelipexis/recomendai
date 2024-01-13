@@ -17,11 +17,13 @@
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-1);
+  text-shadow: 1px 1px var(--color-3);
 }
 
 .header-title span {
   color: var(--color-3);
   font-style: italic;
+  text-shadow: 1px 1px var(--color-1);
 }
 
 .header-title:hover {

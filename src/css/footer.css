@@ -24,10 +24,21 @@ footer {
   color: var(--color-1);
 }
 
+.footer-link {
+  cursor: pointer;
+  font-weight: 700;
+  text-shadow: 1px 1px var(--color-3);
+}
+
+.footer-link:hover {
+  scale: .98;
+  transition: .3s;
+}
+
 @media (max-width: 800px) {
   .footer-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 8px;
   }
 }
